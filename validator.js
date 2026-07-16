@@ -91,6 +91,31 @@ ${lines[0]}`,
         errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-parent-code.`);
     }
 
+    // Detect possible CSV Formula Injection
+
+    const dangerousPrefixes = [
+        "=",
+        "+",
+        "-",
+        "@"
+    ];
+
+    function containsFormulaInjection(value) {
+        return dangerousPrefixes.some(prefix => value.startsWith(prefix));
+    }
+
+    if (containsFormulaInjection(code)) {
+        errors.push(`Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-code.`);
+    }
+
+    if (containsFormulaInjection(label)) {
+        errors.push(`Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-parent-code.`);
+    }
+
+    if (containsFormulaInjection(parent)) {
+        errors.push(`Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-parent-code.`);
+    }
+
     if (!code) {
       errors.push(`Line ${lineNumber}: hierarchy-code is blank.`);
     }
