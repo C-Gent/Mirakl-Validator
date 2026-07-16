@@ -12,6 +12,8 @@ permissions:
 
 jobs:
   deploy:
+    environment:
+      name: Github Pages - Pre-release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
