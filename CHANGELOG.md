@@ -6,8 +6,9 @@ and this project adheres to **Semantic Versioning**.
 
 ---
 
-## [1.2.0] - Upcoming
+## [1.2.0] - (Unreleased)
 ### Added
+- 2026-07-16: Introduced initial UI skeleton for v1.2 including dashboard layout, header, and component placeholders.
 - Planned UI refresh including:
   - Drag-and-drop upload zone
   - File information panel

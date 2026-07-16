@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="container">
+    <header class="app-header">
         <h1>Mirakl Hierarchy Validator</h1>
-        <p>Validate Mirakl Category Hierarchy CSV files before upload.</p>
-        <input type="file" id="fileInput" accept=".csv">
-        <button id="validateButton">Validate File</button>
-        <div id="results"></div>
-    </div>
+        <span class="version">V1.2.0 UI Refresh</span>
+    </header>
+    <main class="dashboard">
+        <section class="left-panel">
+            <div id="upload-area"></div>
+            <div id="file-info"></div>
+        </section>
+        <section class="right-panel">
+            <div id="stats-cards"></div>
+            <div id="validation-summary"></div>
+        </section>
+    </main>
     <script src="./validator.js"></script>
+    <script src="./ui.js"></script>
 </body>
 </html>
