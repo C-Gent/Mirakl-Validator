@@ -1,25 +1,19 @@
 const EXPECTED_HEADER = "hierarchy-code;hierarchy-label;hierarchy-parent-code";
 
-document
-  .getElementById("validateButton")
-  .addEventListener("click", validateFile);
-
 function formatFileSize(bytes) {
   return (bytes / 1024 / 1024).toFixed(2);
 }
 
-function validateFile() {
+function validateUploadedFile(file) {
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-  const file = document.getElementById("fileInput").files[0];
-
-  if (file.size > MAX_FILE_SIZE) {
-    alert(`File Size ${formatFileSize(file.size)} MB exceeds 10MB limit`);
-
-    return;
-  }
 
   if (!file) {
     alert("Please select a CSV file.");
+    return;
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    alert(`File Size ${formatFileSize(file.size)} MB exceeds 10MB limit`);
     return;
   }
 
@@ -27,7 +21,6 @@ function validateFile() {
 
   reader.onload = function (event) {
     const content = event.target.result;
-
     runValidation(content);
   };
 
