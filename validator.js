@@ -130,6 +130,21 @@ ${lines[0]}`,
       );
     }
 
+    // Detect self-referencing parents
+    //
+    // A hierarchy node cannot be its own parent.
+    // Example:
+    // aa-4 -> aa-4
+    //
+
+    if (code && parent && code === parent) {
+      errors.push(
+        `line ${lineNumber}: hierarchy-code '${code}' cannot reference itself as a parent.`,
+      );
+    }
+
+    // Detect blank fields
+
     if (!code) {
       errors.push(`Line ${lineNumber}: hierarchy-code is blank.`);
     }
