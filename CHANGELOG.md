@@ -11,6 +11,8 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-16: Introduced initial UI skeleton for v1.2 including dashboard layout, header, and component placeholders.
 - 2026-07-16: Pre-release Github Pages deployment workflow
 - 2026-07-16: README documentation for branching and release process
+- 2026-07-16: Drag-and-drop upload component with unified validation entry point.
+- 2026-07-16: Improved drag-over styling for clearer visual feedback.
 - Planned UI refresh including:
   - Drag-and-drop upload zone
   - File information panel
