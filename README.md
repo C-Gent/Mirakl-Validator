@@ -212,23 +212,40 @@ Pre‑validation is essential.
 
 # 10. Development Workflow
 
-VS Code
-↓
-GitHub Desktop
-↓
-Commit
-↓
-Push
-↓
-Pull Request
-↓
-Review
-↓
-Merge
-↓
-Release
-↓
-GitHub Pages Deployment
+## Development & Release Workflow
+
+This project uses a structured branching model to keep production stable while allowing active development on upcoming versions.
+
+### Branches
+
+- **main**  
+  Stable production branch. GitHub Pages deploys from this branch.
+
+- **pre-release/<version>**  
+  Staging branch for upcoming versions (e.g., `pre-release/1.2`).  
+  GitHub Actions deploys this branch to a separate pre-release Pages environment.
+
+- **feature/<version>-<feature-name>**  
+  Individual feature branches created from the pre-release branch.  
+  Each feature is merged into the corresponding pre-release branch via pull request.
+
+### Deployment
+
+- **Production site**  
+  Automatically deployed from `main` via GitHub Pages.
+
+- **Pre-release site**  
+  Automatically deployed from `pre-release/<version>` using GitHub Actions  
+  (`.github/workflows/pre-release.yml`).
+
+### Release Process
+
+1. Develop features in `feature/<version>-*` branches.  
+2. Merge features into `pre-release/<version>`.  
+3. Pre-release builds are deployed automatically.  
+4. When the version is complete, merge `pre-release/<version>` into `main`.  
+5. Tag the release (e.g., `v1.2.0`).  
+6. GitHub Pages updates the production site.
 
 
 ---
