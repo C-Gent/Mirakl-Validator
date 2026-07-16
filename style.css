@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fa;
+    padding: 40px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+h1 {
+    color: #00539f;
+}
+
+button {
+    background: #00539f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #003f78;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.error-item {
+    border-left: 4px solid red;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #fff5f5;
+}
