@@ -63,6 +63,8 @@ ${lines[0]}`,
 
   const parentChecks = [];
 
+  const hierarchyMap = new Map();
+
   for (let i = 1; i < lines.length; i++) {
     const lineNumber = i + 1;
 
@@ -164,6 +166,8 @@ ${lines[0]}`,
       code,
       parent,
     });
+
+    hierarchyMap.set(code, parent);
   }
 
   parentChecks.forEach((item) => {
@@ -171,6 +175,23 @@ ${lines[0]}`,
       errors.push(
         `Line ${item.lineNumber}: Parent '${item.parent}' does not exist for hierarchy-code '${item.code}'.`,
       );
+    }
+  });
+
+  // Detect circular hierarchy refrence
+  hierarchyMap.forEach((parent, code) => {
+    const visited = new Set();
+    let currentParent = parent;
+
+    while (currentParent) {
+        if (visited.has(currentParent)) {
+            errors.push(`Circular hierarchy detected involving '${code}`);
+            break;
+        }
+        visited.add(currentParent);
+
+        currentParent = hierarchyMap.get(currentParent);
+
     }
   });
 
