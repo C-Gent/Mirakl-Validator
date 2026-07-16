@@ -1,0 +1,1 @@
+// File information panel component (to be implemented)
