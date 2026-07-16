@@ -4,8 +4,19 @@ document
   .getElementById("validateButton")
   .addEventListener("click", validateFile);
 
+function formatFileSize(bytes) {
+  return (bytes / 1024 / 1024).toFixed(2);
+}
+
 function validateFile() {
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
   const file = document.getElementById("fileInput").files[0];
+
+  if (file.size > MAX_FILE_SIZE) {
+    alert(`File Size ${formatFileSize(file.size)} MB exceeds 10MB limit`);
+
+    return;
+  }
 
   if (!file) {
     alert("Please select a CSV file.");
@@ -80,40 +91,43 @@ ${lines[0]}`,
     const htmlTagPattern = /<[^>]+>/;
 
     if (htmlTagPattern.test(code)) {
-        errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-code.`);
+      errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-code.`);
     }
 
     if (htmlTagPattern.test(label)) {
-        errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-label.`);
+      errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-label.`);
     }
 
     if (htmlTagPattern.test(parent)) {
-        errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-parent-code.`);
+      errors.push(
+        `Line ${lineNumber}: HTML tags detected in hierarchy-parent-code.`,
+      );
     }
 
     // Detect possible CSV Formula Injection
 
-    const dangerousPrefixes = [
-        "=",
-        "+",
-        "-",
-        "@"
-    ];
+    const dangerousPrefixes = ["=", "+", "-", "@"];
 
     function containsFormulaInjection(value) {
-        return dangerousPrefixes.some(prefix => value.startsWith(prefix));
+      return dangerousPrefixes.some((prefix) => value.startsWith(prefix));
     }
 
     if (containsFormulaInjection(code)) {
-        errors.push(`Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-code.`);
+      errors.push(
+        `Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-code.`,
+      );
     }
 
     if (containsFormulaInjection(label)) {
-        errors.push(`Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-parent-code.`);
+      errors.push(
+        `Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-parent-code.`,
+      );
     }
 
     if (containsFormulaInjection(parent)) {
-        errors.push(`Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-parent-code.`);
+      errors.push(
+        `Line ${lineNumber}: Possible CSV formula injection detected in hierarchy-parent-code.`,
+      );
     }
 
     if (!code) {
@@ -159,41 +173,41 @@ ${lines[0]}`,
 //
 
 function renderResults(errors) {
-    const results = document.getElementById("results");
+  const results = document.getElementById("results");
 
-    // Clear existing content safely
-    results.replaceChildren();
+  // Clear existing content safely
+  results.replaceChildren();
 
-    if (errors.length === 0) {
-        const successHeading = document.createElement("h2");
+  if (errors.length === 0) {
+    const successHeading = document.createElement("h2");
 
-        successHeading.className = "success";
-        successHeading.textContent = "✅ Validation Passed";
+    successHeading.className = "success";
+    successHeading.textContent = "✅ Validation Passed";
 
-        const successMessage = document.createElement("p");
+    const successMessage = document.createElement("p");
 
-        successMessage.textContent = "File is safe to upload to Mirakl.";
+    successMessage.textContent = "File is safe to upload to Mirakl.";
 
-        results.appendChild(successHeading);
-        results.appendChild(successMessage);
+    results.appendChild(successHeading);
+    results.appendChild(successMessage);
 
-        return;
-    }
+    return;
+  }
 
-    const errorHeading = document.createElement("h2");
+  const errorHeading = document.createElement("h2");
 
-    errorHeading.className = "error";
-    errorHeading.textContent = "❌ Validation Failed";
+  errorHeading.className = "error";
+  errorHeading.textContent = "❌ Validation Failed";
 
-    results.appendChild(errorHeading);
+  results.appendChild(errorHeading);
 
-    errors.forEach(error => {
-        const errorDiv = document.createElement("div");
+  errors.forEach((error) => {
+    const errorDiv = document.createElement("div");
 
-        errorDiv.className = "error-item";
+    errorDiv.className = "error-item";
 
-        errorDiv.textContent = error;
+    errorDiv.textContent = error;
 
-        results.appendChild(errorDiv);
-    });
+    results.appendChild(errorDiv);
+  });
 }
