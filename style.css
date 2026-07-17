@@ -1,5 +1,36 @@
+/* ============================
+   Global Theme Variables
+   ============================ */
+:root {
+  --color-primary: #00539f;
+  --color-primary-dark: #003f78;
+  --color-primary-light: #f5e9b7;
+  --color-accent: #034374;
+  --color-border: #d0d0d0;
+  --color-bg: #ffffff;
+  --color-bg-light: #c8ccd1;
+  --color-success: #2e7d32;
+  --color-error: #c62828;
+
+  --radius: 8px;
+  --padding: 20px;
+  --transition: 0.2s ease;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================
+   Base Layout
+   ============================ */
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-light);
+  padding: 40px;
+  margin: 0;
+}
+
+.app-header {
+  background: var(--color-bg);
   background: #f5f7fa;
   padding: 40px;
 }
@@ -11,6 +42,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+}
+
+h1 {
+  color: var(--color-primary);
 }
 
 .dashboard {
@@ -20,8 +58,145 @@ body {
   padding: 24px;
 }
 
-.left-panel,
+/* ============================
+   Dashboard Layout
+   ============================ */
+
+main.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.left-panel {
+  background: var(--color-bg);
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: auto;
+}
 .right-panel {
+  background: var(--color-bg);
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: auto;
+}
+
+/* ============================
+   Upload Zone Content
+   ============================ */
+
+.upload-zone {
+  border: 2px dashed #0078d4;
+  padding: 48px;
+  text-align: center;
+  border-radius: var(--radius);
+  cursor: pointer;
+  background-color: var(--color-bg);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.upload-zone p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-primary);
+}
+
+.upload-zone.drag-over {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+  transform: scale(1.02);
+}
+
+.upload-zone:focus {
+  outline: 3px solid var(--color-primary);
+}
+
+/* ============================
+   File Info Panel
+   ============================ */
+
+.file-info {
+  background: var(--color-bg);
+  padding: var(--padding);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.file-info h2,
+.file-info h3 {
+  margin-top: 0;
+  color: var(--color-accent);
+}
+
+.file-info p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.file-info dl {
+  margin: 0;
+}
+
+.file-info dt {
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+.file-info dd {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+}
+
+/* ============================
+   Validation Results Panel
+   ============================ */
+
+#results {
+  margin-top: 24px;
+  background: var(--color-bg);
+  padding: var(--padding);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+}
+
+#results h2.success {
+  color: var(--color-success);
+}
+
+#results h2.error {
+  color: var(--color-error);
+}
+
+.error-item {
+  border-left: 4px solid var(--color-error);
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff5f5;
+  border-radius: var(--radius);
+}
+
+/* ============================
+   Responsive Layout
+   ============================ */
+
+@media (max-width: 900px) {
+  main.dashboard {
+    grid-template-columns: 1fr;
+  }
   background: #ffffff;
   padding: 24px;
   border-radius: 8px;

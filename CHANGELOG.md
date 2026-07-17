@@ -11,14 +11,23 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-16: Introduced initial UI skeleton for v1.2 including dashboard layout, header, and component placeholders.
 - 2026-07-16: Pre-release Github Pages deployment workflow
 - 2026-07-16: README documentation for branching and release process
+- 2026-07-16: - File Info Panel showing filename, size, row count, and header status.
+- 2026-07-17: Modular drag-and-drop upload component.
+- 2026-07-17: Modular file information panel with adaptive file size formatting.
+- 2026-07-17: Semantic HTML5 layout structure (<main>, <section>, <article>).
+
+### Changed
+- 2026-07-17: Updated UI styling for header, panels, spacing, and background contrast.
+- 2026-07-17: Converted validator.js and UI scripts to ES module architecture.
+- 2026-07-17: Improved drag-over highlight behaviour and accessibility.
+- 2026-07-17: Refactored upload flow to use component-based orchestration.
+
+### Planned
 - 2026-07-16: Drag-and-drop upload component with unified validation entry point.
 - 2026-07-16: Improved drag-over styling for clearer visual feedback.
 - Planned UI refresh including:
-  - Drag-and-drop upload zone
-  - File information panel
   - Statistics cards (Rows Checked, Errors, Warnings)
   - Modern dashboard layout
-  - Responsive design improvements
   - Fluent/Azure-inspired styling
   - Optional dark mode support
 

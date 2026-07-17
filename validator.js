@@ -1,5 +1,22 @@
-const EXPECTED_HEADER = "hierarchy-code;hierarchy-label;hierarchy-parent-code";
+export const EXPECTED_HEADER = "hierarchy-code;hierarchy-label;hierarchy-parent-code";
 
+export function formatFileSize(bytes) {
+  if (bytes < 1024) {
+    return `${bytes} B`;
+  }
+
+  if (bytes < 1024 * 1024) {
+    return `${(bytes / 1024).toFixed(2)} KB`;
+  }
+
+  if (bytes < 1024 * 1024 * 1024) {
+    return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+  }
+
+  return `${(bytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
+}
+
+export function validateUploadedFile(file, onMetadataReady) {
 function formatFileSize(bytes) {
   return (bytes / 1024 / 1024).toFixed(2);
 }
@@ -21,6 +38,7 @@ function validateUploadedFile(file) {
 
   reader.onload = function (event) {
     const content = event.target.result;
+    onMetadataReady(file, content);
     runValidation(content);
   };
 
@@ -177,14 +195,13 @@ ${lines[0]}`,
     let currentParent = parent;
 
     while (currentParent) {
-        if (visited.has(currentParent)) {
-            errors.push(`Circular hierarchy detected involving '${code}`);
-            break;
-        }
-        visited.add(currentParent);
+      if (visited.has(currentParent)) {
+        errors.push(`Circular hierarchy detected involving '${code}`);
+        break;
+      }
+      visited.add(currentParent);
 
-        currentParent = hierarchyMap.get(currentParent);
-
+      currentParent = hierarchyMap.get(currentParent);
     }
   });
 
