@@ -1,7 +1,7 @@
 //
-// ===============================
-//  VALIDATOR MODULE (CLEANED)
-// ===============================
+// validator.js
+// Performs structural validation on uploaded Mirakl hierarchy files.
+// Returns both a pass/fail flag and a structured stats object.
 //
 
 export const EXPECTED_HEADER =
@@ -82,7 +82,7 @@ function runValidation(content) {
     errors.push("File is empty.");
     renderResults(errors);
 
-    return {
+    const stats = {
       totalRows: 0,
       validRows: 0,
       invalidRows: 0,
@@ -90,6 +90,8 @@ function runValidation(content) {
       missingParents: 0,
       circularRefs: 0,
     };
+
+    return {passed: false, stats};
   }
 
   //
@@ -266,7 +268,7 @@ Found: ${lines[0]}`,
   //
   // Return stats object
   //
-  return {
+  const stats = {
     totalRows,
     validRows,
     invalidRows,
@@ -274,6 +276,10 @@ Found: ${lines[0]}`,
     missingParents,
     circularRefs,
   };
+
+  const passed = errors.length === 0;
+
+  return {passed, stats};
 }
 
 //
