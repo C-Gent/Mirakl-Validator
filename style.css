@@ -7,6 +7,7 @@
   --color-primary-light: #f5e9b7;
   --color-accent: #034374;
   --color-border: #d0d0d0;
+  --color-border-light: #ebd6c2;
   --color-bg: #ffffff;
   --color-bg-light: #c8ccd1;
   --color-success: #2e7d32;
@@ -182,11 +183,12 @@ main.dashboard {
 }
 
 .error-item {
-  border-left: 4px solid var(--color-error);
-  padding: 10px;
-  margin-bottom: 10px;
-  background: #fff5f5;
-  border-radius: var(--radius);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.error-item:last-child {
+  border-bottom: none;
 }
 
 /* ============================
@@ -272,6 +274,33 @@ main.dashboard {
   font-size: 13px;
   text-align: right;
 }
+
+.category-block {
+  margin-bottom: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-light);
+  box-shadow: var(--shadow);
+}
+
+.category-header {
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.category-body {
+  padding: 12px;
+  display: block;
+}
+
+.category-body.collapsed {
+  display: none;
+}
+
+
 
 /* ============================
    Responsive Layout

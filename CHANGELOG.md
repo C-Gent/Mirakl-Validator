@@ -12,16 +12,18 @@ and this project adheres to **Semantic Versioning**.
 ### Added
 
 - 2026-07-16: Introduced initial UI skeleton for v1.2 including dashboard layout, header, and component placeholders.
-- 2026-07-16: Pre-release Github Pages deployment workflow
-- 2026-07-16: README documentation for branching and release process
-- 2026-07-16: - File Info Panel showing filename, size, row count, and header status.
+- 2026-07-16: Pre-release GitHub Pages deployment workflow.
+- 2026-07-16: README documentation for branching and release process.
+- 2026-07-16: File Info Panel showing filename, size, row count, and header status.
 - 2026-07-17: Modular drag-and-drop upload component.
 - 2026-07-17: Modular file information panel with adaptive file size formatting.
-- 2026-07-17: Semantic HTML5 layout structure (<main>, <section>, <article>).
+- 2026-07-17: Semantic HTML5 layout structure (`<main>`, `<section>`, `<article>`).
 - 2026-07-17: Validation Stats Panel showing key metrics (total rows, valid rows, invalid rows, duplicates, missing parents, circular references).
-- 2026-07-17: New cards.js component for modular stats rendering.
+- 2026-07-17: New `cards.js` component for modular stats rendering.
 - 2026-07-17: Validation Summary Banner providing immediate pass/fail status.
-- 2026-07-17: New summary.js component for modular summary rendering.
+- 2026-07-17: New `summary.js` component for modular summary rendering.
+- 2026-07-17: Categorized error viewer with collapsible sections.
+- 2026-07-17: New `errorCategories.js` component for rendering grouped validation errors.
 
 ### Changed
 
@@ -32,7 +34,7 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-17: Updated validator.js to expose structured validation statistics.
 - 2026-07-17: Updated UI layout to integrate stats panel under file information.
 - 2026-07-17: Refactored validator.js to return structured validation statistics.
-- 2026-07-17: Updated validateUploadedFile() to use async Promise-based workflow.
+- 2026-07-17: Updated `validateUploadedFile()` to use async Promise-based workflow.
 - 2026-07-17: Updated ui.js to await stats and render the stats panel.
 - 2026-07-17: Cleaned and modernised validation engine for clarity and maintainability.
 - 2026-07-17: Updated validator.js to return a pass/fail flag alongside stats.
@@ -41,6 +43,9 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-17: Refined Validation Summary Banner copy for clarity and professionalism.
 - 2026-07-17: Added best-practice inline comments across summary.js, ui.js, and validator.js.
 - 2026-07-17: Improved contributor readability and onboarding for validation components.
+- 2026-07-17: Updated validator.js to return categorized error structures.
+- 2026-07-17: Updated UI to display grouped errors instead of a flat list.
+- 2026-07-17: Improved right-panel layout and readability for complex validation output.
 
 ### Planned
 
@@ -53,7 +58,7 @@ and this project adheres to **Semantic Versioning**.
 
 Development for this version will occur on branch:
 
-feature/1.2-ui-refresh
+`pre-release/1.2.0`
 
 ---
 

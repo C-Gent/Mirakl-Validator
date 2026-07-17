@@ -9,6 +9,7 @@ import { initDropzone } from "./components/dropzone.js";
 import { renderFileInfo } from "./components/filePanel.js";
 import { renderStats } from "./components/cards.js";
 import { renderSummary } from "./components/summary.js";
+import { renderErrorCategories } from "./components/errorCategories.js";
 import { validateUploadedFile } from "./validator.js";
 
 // Initialise dropzone and handle file selection
@@ -20,4 +21,5 @@ initDropzone(async (file) => {
 
   renderSummary(result);
   renderStats(result.stats);
+  renderErrorCategories(result.categories);
 });

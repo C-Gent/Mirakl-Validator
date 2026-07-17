@@ -65,9 +65,20 @@ function runValidation(content) {
     .split("\n")
     .filter((line) => line.trim() !== "");
 
-  const errors = [];
+  // Error categories (each becomes a collapsible block)
+  const categories = {
+    header: [],
+    columns: [],
+    html: [],
+    formula: [],
+    selfReference: [],
+    blankFields: [],
+    duplicates: [],
+    missingParents: [],
+    circular: []
+  };
 
-  // Stats object
+  // Stats tracking
   let totalRows = Math.max(0, lines.length - 1);
   let validRows = 0;
   let invalidRows = 0;
@@ -79,53 +90,55 @@ function runValidation(content) {
   // Empty file
   //
   if (lines.length === 0) {
-    errors.push("File is empty.");
-    renderResults(errors);
+    categories.header.push("The file contains no data");
 
-    const stats = {
-      totalRows: 0,
-      validRows: 0,
-      invalidRows: 0,
-      duplicates: 0,
-      missingParents: 0,
-      circularRefs: 0,
+    return {
+      passed: false,
+      stats: {
+        totalRows: 0,
+        validRows: 0,
+        invalidRows: 0,
+        duplicates: 0,
+        missingParents: 0,
+        circularRefs: 0
+      },
+      categories
     };
-
-    return {passed: false, stats};
   }
 
   //
   // Header validation
   //
   if (lines[0].trim() !== EXPECTED_HEADER) {
-    errors.push(
-      `Invalid header.
-Expected: ${EXPECTED_HEADER}
-Found: ${lines[0]}`,
+    categories.header.push(
+      `Invalid header. Expected: ${EXPECTED_HEADER} - Found: ${lines[0]}`,
     );
   }
 
-  //
-  // Row validation
-  //
   const hierarchyCodes = new Set();
   const parentChecks = [];
   const hierarchyMap = new Map();
+
+  //
+  // Row Validation
+  //
 
   for (let i = 1; i < lines.length; i++) {
     const lineNumber = i + 1;
     const line = lines[i];
     let lineHasError = false;
 
+    // Entire row wrapped in quotes
     if (line.startsWith('"') && line.endsWith('"')) {
-      errors.push(`Line ${lineNumber}: Entire row wrapped in quotes.`);
+      categories.columns.push(`Line ${lineNumber}: Entire row wrapped in quotes.`);
       lineHasError = true;
     }
 
     const columns = line.split(";");
 
+    // Column count mismatch
     if (columns.length !== 3) {
-      errors.push(
+      categories.columns.push(
         `Line ${lineNumber}: Expected 3 columns, found ${columns.length}.`,
       );
       invalidRows++;
@@ -142,17 +155,17 @@ Found: ${lines[0]}`,
     const htmlTagPattern = /<[^>]+>/;
 
     if (htmlTagPattern.test(code)) {
-      errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-code.`);
+      categories.html.push(`Line ${lineNumber}: HTML tags detected in hierarchy-code.`);
       lineHasError = true;
     }
 
     if (htmlTagPattern.test(label)) {
-      errors.push(`Line ${lineNumber}: HTML tags detected in hierarchy-label.`);
+      categories.html.push(`Line ${lineNumber}: HTML tags detected in hierarchy-label.`);
       lineHasError = true;
     }
 
     if (htmlTagPattern.test(parent)) {
-      errors.push(
+      categories.html.push(
         `Line ${lineNumber}: HTML tags detected in hierarchy-parent-code.`,
       );
       lineHasError = true;
@@ -168,21 +181,21 @@ Found: ${lines[0]}`,
     }
 
     if (containsFormulaInjection(code)) {
-      errors.push(
+      categories.formula.push(
         `Line ${lineNumber}: Possible CSV formula injection in hierarchy-code.`,
       );
       lineHasError = true;
     }
 
     if (containsFormulaInjection(label)) {
-      errors.push(
+      categories.formula.push(
         `Line ${lineNumber}: Possible CSV formula injection in hierarchy-label.`,
       );
       lineHasError = true;
     }
 
     if (containsFormulaInjection(parent)) {
-      errors.push(
+      categories.formula.push(
         `Line ${lineNumber}: Possible CSV formula injection in hierarchy-parent-code.`,
       );
       lineHasError = true;
@@ -192,7 +205,7 @@ Found: ${lines[0]}`,
     // Self-referencing parent
     //
     if (code && parent && code === parent) {
-      errors.push(
+      categories.selfReference.push(
         `Line ${lineNumber}: hierarchy-code '${code}' cannot reference itself as a parent.`,
       );
       lineHasError = true;
@@ -202,12 +215,12 @@ Found: ${lines[0]}`,
     // Blank fields
     //
     if (!code) {
-      errors.push(`Line ${lineNumber}: hierarchy-code is blank.`);
+      categories.blankFields.push(`Line ${lineNumber}: hierarchy-code is blank.`);
       lineHasError = true;
     }
 
     if (!label) {
-      errors.push(`Line ${lineNumber}: hierarchy-label is blank.`);
+      categories.blankFields.push(`Line ${lineNumber}: hierarchy-label is blank.`);
       lineHasError = true;
     }
 
@@ -215,7 +228,7 @@ Found: ${lines[0]}`,
     // Duplicate detection
     //
     if (hierarchyCodes.has(code)) {
-      errors.push(`Line ${lineNumber}: Duplicate hierarchy-code '${code}'.`);
+      categories.duplicates.push(`Line ${lineNumber}: Duplicate hierarchy-code '${code}'.`);
       duplicates++;
       lineHasError = true;
     }
@@ -234,7 +247,7 @@ Found: ${lines[0]}`,
   //
   parentChecks.forEach((item) => {
     if (item.parent && !hierarchyCodes.has(item.parent)) {
-      errors.push(
+      categories.missingParents.push(
         `Line ${item.lineNumber}: Parent '${item.parent}' does not exist for hierarchy-code '${item.code}'.`,
       );
       missingParents++;
@@ -251,7 +264,7 @@ Found: ${lines[0]}`,
 
     while (currentParent) {
       if (visited.has(currentParent)) {
-        errors.push(`Circular hierarchy detected involving '${code}'.`);
+        categories.circular.push(`Circular hierarchy detected involving '${code}'.`);
         circularRefs++;
         break;
       }
@@ -260,14 +273,6 @@ Found: ${lines[0]}`,
     }
   });
 
-  //
-  // Render errors
-  //
-  renderResults(errors);
-
-  //
-  // Return stats object
-  //
   const stats = {
     totalRows,
     validRows,
@@ -277,9 +282,9 @@ Found: ${lines[0]}`,
     circularRefs,
   };
 
-  const passed = errors.length === 0;
+  const passed = Object.values(categories).every((arr) => arr.length ===0);
 
-  return {passed, stats};
+  return {passed, stats, categories};
 }
 
 //
