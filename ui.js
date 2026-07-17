@@ -1,9 +1,10 @@
 import { initDropzone } from "./components/dropzone.js";
 import { renderFileInfo } from "./components/filePanel.js";
+import { renderStats } from "./components/cards.js";
 import { validateUploadedFile } from "./validator.js";
 
-initDropzone((file) => {
-  validateUploadedFile(file, renderFileInfo);
+initDropzone(async (file) => {
+  const stats = await validateUploadedFile(file, renderFileInfo);
   const uploadZone = document.getElementById("upload-zone");
   const fileInput = document.getElementById("file-input");
 
@@ -14,7 +15,7 @@ initDropzone((file) => {
     uploadZone.classList.add("drag-over");
   });
 
-  uploadZone.addEventListener("dragleave", () => {
+  uploadZone.addEventListener("drSagleave", () => {
     uploadZone.classList.remove("drag-over");
   });
 
@@ -27,4 +28,6 @@ initDropzone((file) => {
       validateUploadedFile(file);
     }
   });
+
+  renderStats(stats);
 });

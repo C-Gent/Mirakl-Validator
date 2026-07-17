@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on **Keep a Changelog**  
@@ -7,7 +8,9 @@ and this project adheres to **Semantic Versioning**.
 ---
 
 ## [1.2.0] - (Unreleased)
+
 ### Added
+
 - 2026-07-16: Introduced initial UI skeleton for v1.2 including dashboard layout, header, and component placeholders.
 - 2026-07-16: Pre-release Github Pages deployment workflow
 - 2026-07-16: README documentation for branching and release process
@@ -15,23 +18,31 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-17: Modular drag-and-drop upload component.
 - 2026-07-17: Modular file information panel with adaptive file size formatting.
 - 2026-07-17: Semantic HTML5 layout structure (<main>, <section>, <article>).
+- 2026-07-17: Validation Stats Panel showing key metrics (total rows, valid rows, invalid rows, duplicates, missing parents, circular references).
+- 2026-07-17: New cards.js component for modular stats rendering.
 
 ### Changed
+
 - 2026-07-17: Updated UI styling for header, panels, spacing, and background contrast.
 - 2026-07-17: Converted validator.js and UI scripts to ES module architecture.
 - 2026-07-17: Improved drag-over highlight behaviour and accessibility.
 - 2026-07-17: Refactored upload flow to use component-based orchestration.
+- 2026-07-17: Updated validator.js to expose structured validation statistics.
+- 2026-07-17: Updated UI layout to integrate stats panel under file information.
+- 2026-07-17: Refactored validator.js to return structured validation statistics.
+- 2026-07-17: Updated validateUploadedFile() to use async Promise-based workflow.
+- 2026-07-17: Updated ui.js to await stats and render the stats panel.
+- 2026-07-17: Cleaned and modernised validation engine for clarity and maintainability.
 
 ### Planned
-- 2026-07-16: Drag-and-drop upload component with unified validation entry point.
-- 2026-07-16: Improved drag-over styling for clearer visual feedback.
+
 - Planned UI refresh including:
-  - Statistics cards (Rows Checked, Errors, Warnings)
   - Modern dashboard layout
   - Fluent/Azure-inspired styling
   - Optional dark mode support
 
 ### Notes
+
 Development for this version will occur on branch:
 
 feature/1.2-ui-refresh
@@ -39,7 +50,9 @@ feature/1.2-ui-refresh
 ---
 
 ## [1.1.0] - 2026-07-15
+
 ### Added
+
 - **Safe DOM Rendering**
   - Removed all HTML injection points
   - Ensured all uploaded content is rendered as plain text
@@ -73,16 +86,20 @@ feature/1.2-ui-refresh
   - Added summary showing file name, rows checked, and error count
 
 ### Changed
+
 - Improved internal validation structure for future extensibility
 
 ### Fixed
+
 - Runtime variable handling in Bruno API workflow
 - Issues caused by Excel CSV UTF-8 (Comma Delimited) exports
 
 ---
 
 ## [1.0.0] - Initial Release
+
 ### Added
+
 - Basic CSV upload
 - Header validation
 - Parent existence validation
