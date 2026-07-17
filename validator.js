@@ -1,4 +1,5 @@
-export const EXPECTED_HEADER = "hierarchy-code;hierarchy-label;hierarchy-parent-code";
+export const EXPECTED_HEADER =
+  "hierarchy-code;hierarchy-label;hierarchy-parent-code";
 
 export function formatFileSize(bytes) {
   if (bytes < 1024) {
@@ -17,11 +18,9 @@ export function formatFileSize(bytes) {
 }
 
 export function validateUploadedFile(file, onMetadataReady) {
-function formatFileSize(bytes) {
-  return (bytes / 1024 / 1024).toFixed(2);
-}
-
-function validateUploadedFile(file) {
+  function formatFileSize(bytes) {
+    return (bytes / 1024 / 1024).toFixed(2);
+  }
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
   if (!file) {
