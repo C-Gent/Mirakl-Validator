@@ -17,6 +17,11 @@ export function formatFileSize(bytes) {
 }
 
 export function validateUploadedFile(file, onMetadataReady) {
+function formatFileSize(bytes) {
+  return (bytes / 1024 / 1024).toFixed(2);
+}
+
+function validateUploadedFile(file) {
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
   if (!file) {

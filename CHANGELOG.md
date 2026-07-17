@@ -23,6 +23,8 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-17: Refactored upload flow to use component-based orchestration.
 
 ### Planned
+- 2026-07-16: Drag-and-drop upload component with unified validation entry point.
+- 2026-07-16: Improved drag-over styling for clearer visual feedback.
 - Planned UI refresh including:
   - Statistics cards (Rows Checked, Errors, Warnings)
   - Modern dashboard layout
