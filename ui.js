@@ -1,33 +1,23 @@
+//
+// ui.js
+// Orchestrates the upload → validation → UI rendering pipeline.
+// Uses async/await to ensure validation results are available
+// before rendering summary and stats.
+//
+
 import { initDropzone } from "./components/dropzone.js";
 import { renderFileInfo } from "./components/filePanel.js";
 import { renderStats } from "./components/cards.js";
+import { renderSummary } from "./components/summary.js";
 import { validateUploadedFile } from "./validator.js";
 
+// Initialise dropzone and handle file selection
 initDropzone(async (file) => {
-  const stats = await validateUploadedFile(file, renderFileInfo);
-  const uploadZone = document.getElementById("upload-zone");
-  const fileInput = document.getElementById("file-input");
+  // Run validation asynchronously and retrieve structured result
+  const result = await validateUploadedFile(file, renderFileInfo);
 
-  uploadZone.addEventListener("click", () => fileInput.click());
+  if (!result) return;
 
-  uploadZone.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    uploadZone.classList.add("drag-over");
-  });
-
-  uploadZone.addEventListener("drSagleave", () => {
-    uploadZone.classList.remove("drag-over");
-  });
-
-  uploadZone.addEventListener("drop", (e) => {
-    e.preventDefault();
-    uploadZone.classList.remove("drag-over");
-
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      validateUploadedFile(file);
-    }
-  });
-
-  renderStats(stats);
+  renderSummary(result);
+  renderStats(result.stats);
 });

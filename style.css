@@ -232,6 +232,47 @@ main.dashboard {
   margin: 0;
 }
 
+.summary-banner {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.summary-banner-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.summary-succes {
+  background-color: #e8f5e9;
+  border: 1px solid #2e7d32;
+}
+
+.summary-error {
+  background-color: #ffebee;
+  border: 1px solid #c62828;
+}
+
+.summary-main h2 {
+  margin: 0 0 4px 0;
+}
+
+.summary-main p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.summary-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  text-align: right;
+}
+
 /* ============================
    Responsive Layout
    ============================ */
