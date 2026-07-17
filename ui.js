@@ -1,2 +1,7 @@
-// UI logic will be added in future commits
-console.log("UI skeleton loaded");
+import { initDropzone } from "./components/dropzone.js";
+import { renderFileInfo } from "./components/filePanel.js";
+import { validateUploadedFile } from "./validator.js";
+
+initDropzone((file) => {
+  validateUploadedFile(file, renderFileInfo);
+});

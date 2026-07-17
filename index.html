@@ -1,27 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mirakl Hierarchy Validator</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <header class="app-header">
-        <h1>Mirakl Hierarchy Validator</h1>
-        <span class="version">V1.2.0 UI Refresh</span>
+      <h1>Mirakl Hierarchy Validator</h1>
+      <span class="version">V1.2.0 UI Refresh</span>
     </header>
     <main class="dashboard">
-        <section class="left-panel">
-            <div id="upload-area"></div>
-            <div id="file-info"></div>
-        </section>
-        <section class="right-panel">
-            <div id="stats-cards"></div>
-            <div id="validation-summary"></div>
-        </section>
+      <section class="left-panel">
+        <article id="upload-zone" class="upload-zone" tabindex="0">
+          <p>Drag & Drop your Mirakl file here or click to browse</p>
+          <input type="file" id="file-input" hidden />
+        </article>
+        <article id="file-info" class="file-info">
+          <h2>File information</h2>
+          <dl>
+            <div>
+              <dt>Name:</dt>
+              <dd id="info-name"></dd>
+            </div>
+            <div>
+              <dt>Size:</dt>
+              <dd id="info-size"></dd>
+            </div>
+            <div>
+              <dt>Rows:</dt>
+              <dd id="info-rows"></dd>
+            </div>
+            <div>
+              <dt>Header:</dt>
+              <dd id="info-header"></dd>
+            </div>
+            <div>
+              <dt>Uploaded:</dt>
+              <dd id="info-uploaded"></dd>
+            </div>
+          </dl>
+        </article>
+      </section>
+      <section class="right-panel">
+        <div id="results"></div>
+      </section>
     </main>
-    <script src="./validator.js"></script>
-    <script src="./ui.js"></script>
-</body>
+    <script type="module" src="./ui.js"></script>
+  </body>
 </html>

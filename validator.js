@@ -1,25 +1,31 @@
-const EXPECTED_HEADER = "hierarchy-code;hierarchy-label;hierarchy-parent-code";
+export const EXPECTED_HEADER = "hierarchy-code;hierarchy-label;hierarchy-parent-code";
 
-document
-  .getElementById("validateButton")
-  .addEventListener("click", validateFile);
+export function formatFileSize(bytes) {
+  if (bytes < 1024) {
+    return `${bytes} B`;
+  }
 
-function formatFileSize(bytes) {
-  return (bytes / 1024 / 1024).toFixed(2);
+  if (bytes < 1024 * 1024) {
+    return `${(bytes / 1024).toFixed(2)} KB`;
+  }
+
+  if (bytes < 1024 * 1024 * 1024) {
+    return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+  }
+
+  return `${(bytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
 }
 
-function validateFile() {
+export function validateUploadedFile(file, onMetadataReady) {
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-  const file = document.getElementById("fileInput").files[0];
-
-  if (file.size > MAX_FILE_SIZE) {
-    alert(`File Size ${formatFileSize(file.size)} MB exceeds 10MB limit`);
-
-    return;
-  }
 
   if (!file) {
     alert("Please select a CSV file.");
+    return;
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    alert(`File Size ${formatFileSize(file.size)} MB exceeds 10MB limit`);
     return;
   }
 
@@ -27,7 +33,7 @@ function validateFile() {
 
   reader.onload = function (event) {
     const content = event.target.result;
-
+    onMetadataReady(file, content);
     runValidation(content);
   };
 
@@ -184,14 +190,13 @@ ${lines[0]}`,
     let currentParent = parent;
 
     while (currentParent) {
-        if (visited.has(currentParent)) {
-            errors.push(`Circular hierarchy detected involving '${code}`);
-            break;
-        }
-        visited.add(currentParent);
+      if (visited.has(currentParent)) {
+        errors.push(`Circular hierarchy detected involving '${code}`);
+        break;
+      }
+      visited.add(currentParent);
 
-        currentParent = hierarchyMap.get(currentParent);
-
+      currentParent = hierarchyMap.get(currentParent);
     }
   });
 
