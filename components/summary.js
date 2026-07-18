@@ -18,7 +18,6 @@ export function renderSummary(result) {
         return;
     }
 
-    placeholder.style.display = "none";
     const {passed, stats} = result;
     banner.style.display = "block";
 

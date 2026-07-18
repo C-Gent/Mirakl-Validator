@@ -1,39 +1,60 @@
 export function renderStats(stats) {
   const panel = document.getElementById("stats-panel");
-  panel.replaceChildren();
+  const grid = document.getElementById("stats-grid");
 
-  panel.innerHTML = `
-    <h2>Validation Stats</h2>
-    <div class ="stats-grid">
-      <div class="stat-card">
-        <h3>Total Rows</h3>
-        <p>${stats.totalRows}</p>
-      </div>
-      
-     <div class="stat-card">
-        <h3>Valid Rows</h3>
-        <p>${stats.validRows}</p>
-      </div>
+  grid.innerHTML = ""
 
-      <div class="stat-card">
-        <h3>Invalid Rows</h3>
-        <p>${stats.invalidRows}</p>
-      </div>
+  const items = [
+    {
+      icon: "📊",
+      label: "Total Rows",
+      value: stats.totalRows,
+      type: "success"
+    },
+    {
+      icon: "✔",
+      label: "Valid Rows",
+      value: stats.validRows,
+      type: "success"
+    },
+    {
+      icon: "⚠",
+      label: "Invalid Rows",
+      value: stats.invalidRows,
+      type: stats.invalidRows > 0 ? "warning" : "success"
+    },
+    {
+      icon: "♻",
+      label: "Duplicates",
+      value: stats.duplicates,
+      type: stats.duplicates > 0 ? "warning" : "success"
+    },
+    {
+      icon: "🏷",
+      label: "Missing Parents",
+      value: stats.missingParents,
+      type: stats.missingParents > 0 ? "error" : "success"
+    },
+    {
+      icon: "🔄",
+      label: "Circular Refs",
+      value: stats.circularRefs,
+      type: stats.circularRefs > 0 ? "error" : "success"
+    }
+  ];
 
-      <div class="stat-card">
-        <h3>Duplicate Codes</h3>
-        <p>${stats.duplicates}</p>
-      </div>
+  items.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = `stats-card ${item.type}`;
 
-      <div class="stat-card">
-        <h3>Missing Parents</h3>
-        <p>${stats.missingParents}</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>Circular References</h3>
-        <p>${stats.circularRefs}</p>
-      </div>
-    </div>
+    card.innerHTML = `
+      <div class="stats-card-icon">${item.icon}</div>
+      <div class="stats-card-label">${item.label}</div>
+      <div class="stats-card-value">${item.value}</div>
     `;
+
+    grid.appendChild(card);
+  });
+
+  panel.classList.remove("hidden");
 }
