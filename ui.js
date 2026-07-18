@@ -21,7 +21,6 @@ initDropzone(async (file) => {
     renderSummary(null);
     renderErrorCategories({}, false);
     document.getElementById("stats-panel").classList.add("hidden");
-    showStatsPlaceholder();
     loadUploadHistory();
     loadRecentErrors();
     return;
@@ -34,7 +33,6 @@ initDropzone(async (file) => {
   document.getElementById("summary-banner").classList.remove("hidden");
   renderSummary(result);
   document.getElementById("stats-panel").classList.remove("hidden");
-  hideStatsPlaceholder();
   renderStats(result.stats);
   renderErrorCategories(result.categories, true);
 
@@ -43,20 +41,6 @@ initDropzone(async (file) => {
   loadUploadHistory();
   loadRecentErrors();
 });
-
-// Stats placeholder
-function showStatsPlaceholder() {
-  const panel = document.getElementById("stats-panel");
-  const placeholder = document.getElementById("stats-placeholder");
-  panel.innerHTML = "";
-  panel.appendChild(placeholder);
-  placeholder.style.display = "block"
-}
-
-function hideStatsPlaceholder() {
-  const placeholder = document.getElementById("stats-placeholder");
-  placeholder.style.display = "none";
-}
 
 // Upload History
 function saveUploadHistory(file) {

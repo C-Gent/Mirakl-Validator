@@ -39,6 +39,12 @@ and this project adheres to **Semantic Versioning**.
 - 2026‑07‑18: Collapse/Expand functionality for left-panel.
 - 2026‑07‑18: Fluent-style spacing and typography improvements across left-panel.
 - 2026‑07‑18: Smooth collapse animation and stable layout behaviour.
+- 2026‑07‑18: Fluent-style card layout for validation statistics.
+- 2026‑07‑18: Icons added to each statistic category.
+- 2026‑07‑18: Colour coding for positive, warning, and critical stats.
+- 2026‑07‑18: Responsive grid layout for stats panel.
+- 2026‑07‑18: Fade-in animation for stats card rendering.
+- 2026‑07‑18: “View Details” link added to stats panel.
 
 ### Changed
 
@@ -71,6 +77,9 @@ and this project adheres to **Semantic Versioning**.
 - 2026‑07‑18: Improved upload zone hover and drag-over behaviour.
 - 2026‑07‑18: Refined placeholder alignment for summary and stats panels.
 - 2026‑07‑18: Adjusted collapsed left-panel width to prevent squashed layout.
+- 2026‑07‑18: Updated stats panel spacing and typography.
+- 2026‑07‑18: Improved alignment between stats panel and summary banner.
+- 2026‑07‑18: Refined stats panel to match Fluent-style design language.
 
 ### Planned
 
