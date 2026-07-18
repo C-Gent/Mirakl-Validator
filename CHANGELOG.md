@@ -45,6 +45,11 @@ and this project adheres to **Semantic Versioning**.
 - 2026‑07‑18: Responsive grid layout for stats panel.
 - 2026‑07‑18: Fade-in animation for stats card rendering.
 - 2026‑07‑18: “View Details” link added to stats panel.
+- 2026‑07‑18: Smooth expand/collapse animations for error categories.
+- 2026‑07‑18: Staggered fade-in animation for error rows.
+- 2026‑07‑18: Animated transitions for category headers.
+- 2026‑07‑18: Animated Expand All / Collapse All toolbar.
+- 2026‑07‑18: Fade-in animation for right-panel placeholder.
 
 ### Changed
 
@@ -80,6 +85,8 @@ and this project adheres to **Semantic Versioning**.
 - 2026‑07‑18: Updated stats panel spacing and typography.
 - 2026‑07‑18: Improved alignment between stats panel and summary banner.
 - 2026‑07‑18: Refined stats panel to match Fluent-style design language.
+- 2026‑07‑18: Updated right-panel motion curves to Fluent-style easing.
+- 2026‑07‑18: Improved spacing and transitions for right-panel interactions.
 
 ### Planned
 
