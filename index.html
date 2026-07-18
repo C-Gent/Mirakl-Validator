@@ -17,7 +17,7 @@
           <p>Drag & Drop your Mirakl file here or click to browse</p>
           <input type="file" id="file-input" hidden />
         </article>
-        <article id="file-info" class="file-info">
+        <article id="file-info" class="file-info hidden">
           <h2>File information</h2>
           <dl>
             <div>
@@ -42,16 +42,44 @@
             </div>
           </dl>
         </article>
-        <article id="summary-banner" class="summary-banner">
+        <article id="summary-banner" class="summary-banner hidden">
           <div id="summary-placeholder" class="summary-placeholder">
             Upload a file to see validation summary.
           </div>
         </article>
-        <article id="stats-panel" class="stats-panel">
+        <article id="stats-panel" class="stats-panel hidden">
           <div id="stats-placeholder" class="stats-placeholder">
             Upload a file to see validation statistics.
           </div>
         </article>
+
+        <!-- Validation Tips -->
+         <article id="validation-tips" class="tips-panel">
+          <h2>Validation Tips</h2>
+          <ul>
+            <li>Ensure your CSV uses UTF-8 encoding.</li>
+            <li>Remove any HTML tags from labels.</li>
+            <li>Check for duplicate hierarchy codes.</li>
+            <li>Verify Parent codes exist before upload.</li>
+            <li>Avoid Excel formula injection characters (=, +, -, @).</li>
+          </ul>
+         </article>
+
+         <!-- Upload History -->
+          <article id="upload-history" class="history-panel">
+            <h2>Recent Uploads</h2>
+            <ul id="history-list"></ul>
+          </article>
+
+          <!-- Recent Errors -->
+           <article id="recent-errors" class="recent-errors-panel">
+            <h2>Last Validation Result</h2>
+            <div id="recent-errors-content"></div>
+           </article>
+
+           <!-- Left Panel Collapse -->
+            <button id="collapse-left" class="collapse-left-btn">Collapse Panel</button>
+            <button id="expand-left" class="expand-left-btn">Expand Panel</button>
       </section>
       <section class="right-panel">
         <!-- Toolbar for expand/collapse controls -->

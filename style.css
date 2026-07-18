@@ -79,6 +79,7 @@ main.dashboard {
   flex-direction: column;
   gap: 24px;
   min-height: auto;
+  transition: width 0.25s ease;
 }
 .right-panel {
   background: var(--color-bg);
@@ -403,7 +404,107 @@ main.dashboard {
   overflow: hidden;
 }
 
+/* Tips Panel */
+.tips-panel {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-bg-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
 
+.tips-panel h2 {
+  margin-bottom: 10px;
+}
+
+.tips-panel ul {
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+/* Upload History */
+.history-panel {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-bg-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.history-panel h2 {
+  margin-bottom: 10px;
+}
+
+#history-list li {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* Recent Errors */
+.recent-errors-panel {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-bg-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.recent-errors-panel h2 {
+  margin-bottom: 10px;
+}
+
+#recent-errors-content {
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+/* Collapse / Expand Buttons */
+.collapse-left-btn,
+.expand-left-btn {
+  margin-top: 20px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.collapse-left-btn:hover,
+.expand-left-btn:hover {
+  background: var(--color-bg-light);
+}
+
+.expand-left-btn {
+  display: none;
+}
+
+/* collapsed Panel */
+
+.left-panel.collapsed {
+  width: 120px;
+  overflow: hidden;
+}
+
+.left-panel.collapsed *:not(.expand-left-btn) {
+  display: none;
+}
+
+.left-panel.collapsed .expand-left-btn {
+  display: block;
+  margin: 20px auto;
+}
+
+#file-info.hidden {
+  display: none;
+}
+
+#summary-banner.hidden {
+  display: none;
+}
+#stats-panel.hidden {
+  display: none;
+}
 
 /* ============================
    Responsive Layout
