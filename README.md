@@ -265,15 +265,19 @@ This project uses a structured branching model to keep production stable while a
 mirakl-validator/
 │
 ├── README.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
 ├── index.html
 ├── style.css
 ├── validator.js
 └── components/
-├── dropzone.js
-├── filePanel.js
-├── summary.js
-├── cards.js
-└── errorCategories.js
+    ├── dropzone.js
+    ├── filePanel.js
+    ├── summary.js
+    ├── cards.js
+    └── errorCategories.js
+
+Commit 7 introduces placeholder elements inside summary-banner, stats-panel, and results containers to support empty-state rendering. These must remain in the HTML for correct UI behaviour.
 
 ---
 

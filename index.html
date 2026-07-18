@@ -42,10 +42,25 @@
             </div>
           </dl>
         </article>
-        <article id="summary-banner" class="summary-banner"></article>
-        <article id="stats-panel" class="stats-panel"></article>
+        <article id="summary-banner" class="summary-banner">
+          <div id="summary-placeholder" class="summary-placeholder">
+            Upload a file to see validation summary.
+          </div>
+        </article>
+        <article id="stats-panel" class="stats-panel">
+          <div id="stats-placeholder" class="stats-placeholder">
+            Upload a file to see validation statistics.
+          </div>
+        </article>
       </section>
       <section class="right-panel">
+        <!-- Toolbar for expand/collapse controls -->
+         <div id="results-toolbar" class="results-toolbar">
+          <button id="expand-all" class="toolbar-btn">Expand All</button>
+          <button id="collapse-all" class="toolbar-btn">Collapse All</button>
+         </div>
+
+         <!-- Categorised collapsible errors -->
         <article id="results"></article>
       </section>
     </main>

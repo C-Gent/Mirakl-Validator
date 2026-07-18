@@ -24,6 +24,14 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-17: New `summary.js` component for modular summary rendering.
 - 2026-07-17: Categorized error viewer with collapsible sections.
 - 2026-07-17: New `errorCategories.js` component for rendering grouped validation errors.
+- 2026-07-18: Category icons for improved visual scanning.
+- 2026-07-18: Severity badges for critical/warning/info error groups.
+- 2026-07-18: Expand All / Collapse All toolbar for error categories.
+- 2026-07-18: Smooth expand/collapse animations.
+- 2026-07-18: Sticky category headers for long error lists.
+- 2026-07-18: ARIA roles and keyboard accessibility for category headers.
+- 2026-07-18: Placeholder message for right-panel when no file is uploaded.
+- 2026-07-18: Summary banner now hidden until validation results exist.
 
 ### Changed
 
@@ -46,6 +54,10 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-17: Updated validator.js to return categorized error structures.
 - 2026-07-17: Updated UI to display grouped errors instead of a flat list.
 - 2026-07-17: Improved right-panel layout and readability for complex validation output.
+- 2026-07-18: Improved spacing, typography, and hover states in right-panel.
+- 2026-07-18: Updated errorCategories.js to support icons, badges, and animations.
+- 2026-07-18: Refined category rendering for Fluent-style UI consistency.
+- 2026-07-18: Reduced spacing between file information and summary banner.
 
 ### Planned
 
