@@ -14,12 +14,28 @@ import { validateUploadedFile } from "./validator.js";
 
 // Initialise dropzone and handle file selection
 initDropzone(async (file) => {
+
+  if (!file) {
+    renderSummary(null);
+
+    const statsPanel = document.getElementById("stats-panel");
+    const statsPlaceholder = document.getElementById("stats-placeholder");
+
+    statsPanel.innerHTML = "";
+    statsPanel.appendChild(statsPlaceholder);
+    statsPlaceholder.style.display = "block;"
+    renderErrorCategories({}, false);
+    return;
+  }
+
   // Run validation asynchronously and retrieve structured result
   const result = await validateUploadedFile(file, renderFileInfo);
 
-  if (!result) return;
-
   renderSummary(result);
+
+  const statsPlaceholder =document.getElementById("stats-placeholder");
+  statsPlaceholder.style.display = "none";
+
   renderStats(result.stats);
-  renderErrorCategories(result.categories);
+  renderErrorCategories(result.categories, true);
 });

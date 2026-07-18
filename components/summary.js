@@ -7,14 +7,21 @@
 
 export function renderSummary(result) {
     const banner = document.getElementById("summary-banner");
+    const placeholder = document.getElementById("summary-placeholder");
 
     // If no result was returned (e.g., file too large), clear banner
     if (!result) {
+        banner.style.display = "block"
+        placeholder.style.display = "block"
         banner.innerHTML = "";
+        banner.appendChild(placeholder);
         return;
     }
 
+    placeholder.style.display = "none";
     const {passed, stats} = result;
+    banner.style.display = "block";
+
 
     const statusText = passed ? "Validation Passed" : "Validation Failed";
     const description = passed ? "Your file meets all structural requirements and is ready for upload." : "Issues were detected in the file. Review the details below.";

@@ -1,5 +1,6 @@
 export function renderStats(stats) {
   const panel = document.getElementById("stats-panel");
+  panel.replaceChildren();
 
   panel.innerHTML = `
     <h2>Validation Stats</h2>
