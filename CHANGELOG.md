@@ -32,6 +32,13 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-18: ARIA roles and keyboard accessibility for category headers.
 - 2026-07-18: Placeholder message for right-panel when no file is uploaded.
 - 2026-07-18: Summary banner now hidden until validation results exist.
+- 2026‑07‑18: File Information, Summary Banner, and Stats Panel now remain hidden until a file is uploaded.
+- 2026‑07‑18: Validation Tips panel with best-practice guidance.
+- 2026‑07‑18: Upload History panel showing last 3 uploaded files.
+- 2026‑07‑18: Recent Errors panel storing last validation result via localStorage.
+- 2026‑07‑18: Collapse/Expand functionality for left-panel.
+- 2026‑07‑18: Fluent-style spacing and typography improvements across left-panel.
+- 2026‑07‑18: Smooth collapse animation and stable layout behaviour.
 
 ### Changed
 
@@ -58,6 +65,12 @@ and this project adheres to **Semantic Versioning**.
 - 2026-07-18: Updated errorCategories.js to support icons, badges, and animations.
 - 2026-07-18: Refined category rendering for Fluent-style UI consistency.
 - 2026-07-18: Reduced spacing between file information and summary banner.
+- 2026‑07‑18: Updated left-panel layout to improve readability and reduce spacing inconsistencies.
+- 2026‑07‑18: Improved stats panel styling with Fluent-style card design.
+- 2026‑07‑18: Updated summary banner spacing and alignment.
+- 2026‑07‑18: Improved upload zone hover and drag-over behaviour.
+- 2026‑07‑18: Refined placeholder alignment for summary and stats panels.
+- 2026‑07‑18: Adjusted collapsed left-panel width to prevent squashed layout.
 
 ### Planned
 
